@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
+import Navigation from './components/Navigation';
 
-function App() {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
+import Container from 'react-bootstrap/Container';
+import AddContact from './views/AddContact';
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Navigation />
+      <Container>
+        <Switch>
+          <Route path="/contact/:contactId">
+            Contact...
+          </Route>
+          <Route path="/add-contact">
+            <AddContact />
+          </Route>
+          <Route path="/edit-contact/:contactId">
+            Edit Contact [id]
+          </Route>
+          <Route path="/">
+            Home
+          </Route>
+        </Switch>
+      </Container>
+    </Router>
+  )
 }
-
-export default App;
